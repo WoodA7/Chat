@@ -5,15 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Chat"
         mc:Ignorable="d"
-        Title="Cyber Guru Chat" Height="350" Width="525">
+        Title="Cyber Guru Chat" Height="350" Width="579.873">
     <Grid Background="#FF514E4E">
-        <RichTextBox x:Name="rtbChat" HorizontalAlignment="Left" Height="198" Margin="10,10,0,0" VerticalAlignment="Top" Width="414">
+        <RichTextBox x:Name="rtbChat" HorizontalAlignment="Left" Height="173" Margin="10,35,0,0" VerticalAlignment="Top" Width="414">
             <FlowDocument/>
         </RichTextBox>
-        <Button x:Name="btnSend" Content="Send" HorizontalAlignment="Left" Height="21" Margin="436,220,0,0" VerticalAlignment="Top" Width="71" Click="btnSend_Click"/>
-        <RichTextBox x:Name="rtbMessage" HorizontalAlignment="Left" Height="89" Margin="10,220,0,0" VerticalAlignment="Top" Width="414">
+        <Button x:Name="btnSend" Content="Send" HorizontalAlignment="Left" Height="21" Margin="429,281,0,0" VerticalAlignment="Top" Width="133" Click="btnSend_Click" Foreground="#FF0CE01F" Background="#FF1B1A1A"/>
+        <RichTextBox x:Name="rtbMessage" HorizontalAlignment="Left" Height="89" Margin="10,213,0,0" VerticalAlignment="Top" Width="414">
             <FlowDocument/>
         </RichTextBox>
+        <TextBox x:Name="tbUserName" HorizontalAlignment="Left" Height="20" Margin="113,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="189"/>
+        <Label x:Name="label" Content="Your User name:" HorizontalAlignment="Left" Height="28" Margin="10,7,0,0" VerticalAlignment="Top" Width="98" Foreground="#FF10F725"/>
+        <Label x:Name="label_Copy" Content="On-line users" HorizontalAlignment="Left" Height="23" Margin="429,7,0,0" VerticalAlignment="Top" Width="98" Foreground="#FF10F725"/>
+        <ListView x:Name="lstUsers" HorizontalAlignment="Left" Height="173" Margin="429,35,0,0" VerticalAlignment="Top" Width="133">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Window>

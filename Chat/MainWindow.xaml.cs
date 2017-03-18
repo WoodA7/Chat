@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,12 +28,37 @@ namespace Chat
         public MainWindow()
         {
             InitializeComponent();
+            new Thread(UpdateUsers).Start();
+            new Thread(UpdateChat).Start();
         }
+
+        private void UpdateUsers()
+        {
+            while (true)
+            {
+                var tcpClient = new TcpClient(@"192.168.2.94", 7777);
+                var stream = tcpClient.GetStream();
+                IFormatter formatter = new BinaryFormatter();
+                var user = formatter.Deserialize(stream) as Dictionary<string, string>;
+                lstUsers.Dispatcher.Invoke(() => lstUsers.ItemsSource = user?.Select((t) => t.Key));
+                tcpClient.Close();
+                Thread.Sleep(1000);
+            }
+        }
+
+        private void UpdateChat()
+        { }
 
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
+            if (tbUserName.Text.Length == 0)
+            {
+                MessageBox.Show(@"Enter your user name!");
+                return;
+            }
+                
             var richText = new TextRange(rtbMessage.Document.ContentStart, rtbMessage.Document.ContentEnd).Text;
-            var from = "Dmitri";
+            var from = tbUserName.Text;
             var msg = new Message(richText, from, "", DateTime.Now);
 
             try
