@@ -24,6 +24,5 @@ namespace Chat
         {
             InitializeComponent();
         }
-
     }
 }
